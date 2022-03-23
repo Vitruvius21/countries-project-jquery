@@ -1,0 +1,123 @@
+@import "style.css";
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__navigation {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px 10px 20px;
+}
+
+.main__section-go-back-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 35px;
+  width: 110px;
+}
+
+.nav-icon {
+  height: 20px;
+  width: 20px;
+  fill: var(--btn-txt-color);
+  transition: fill var(--transition-time) ease-in-out;
+}
+
+.main__section-go-back-btn:active .nav-icon {
+  fill: var(--btn-txt-color-active);
+}
+
+.main__data {
+  height: 100%;
+  padding: 0 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.main__data-graphics {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.country-flag {
+  flex: 0 0 40%;
+  width: 500px;
+  height: 400px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.country-flag-img {
+  height: 100%;
+  object-fit: contain;
+  border: 1px solid var(--border-color);
+  transition: border var(--transition-time) ease-in-out;
+}
+
+.gmap-container {
+  flex: 0 0 40%;
+  display: inline-block;
+  height: 500px;
+  width: 700px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.gmap-canvas {
+  border-style: solid;
+  border-color: var(--border-color);
+  transition: border var(--transition-time) ease-in-out;
+}
+
+.main__data-text h1 {
+  padding: 20px 0 10px 0;
+}
+
+.main__data-text p {
+  font-size: 14px;
+}
+
+.main__data-text p:not(.main__data-neighbors) {
+  padding: 4px 0;
+}
+
+.main__data-text p span {
+  font-weight: 500;
+}
+
+.main__data-descriptions-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 125px;
+  padding: 10px 0;
+}
+
+.main__data-timezones,
+.main__data-name-native,
+.main__data-language {
+  width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.main__data-neighbors {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.main__data-neighbors button {
+  font-size: 14px;
+  padding: 6px 12px;
+}

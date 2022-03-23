@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="twitter:card" content="World Countries Website" />
+    <meta
+      name="twitter:site"
+      content="https://gb-worldcountries.netlify.app/index.html"
+    />
+    <meta
+      property="og:url"
+      content="https://gb-worldcountries.netlify.app/index.html"
+    />
+    <meta property="og:type" content="pages" />
+    <meta property="og:title" content="World Countries Website" />
+    <meta
+      property="og:description"
+      content="Giorgi Balakhadze's project 'World Countries' is a website that shows the list of countries in the world."
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/Vitruvius21/countries-project/main/design/mine/1.png"
+    />
+
+    <title>World Countries</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__h1">World Countries</h1>
+      <div class="theme__btn-container">
+        <button class="btn-toggle"></button>
+      </div>
+      <nav class="navigation">
+        <ul class="navigation__members">
+          <li class="navigation__member">
+            <a href="index.html"
+              ><button class="navigation__btn navigation__active-btn">
+                Home
+              </button></a
+            >
+          </li>
+          <li class="navigation__member">
+            <a href="pages/countries.html"
+              ><button class="navigation__btn">UN Countries</button></a
+            >
+          </li>
+          <li class="navigation__member">
+            <a href="pages/territories.html"
+              ><button class="navigation__btn">Territories</button></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <section class="main__section">
+        <div class="main__section-card">
+          <img class="loader-img" src="./assets/loader.svg" alt="loader-icon" />
+        </div>
+        <button id="rand" class="action-btn">Next Random Country</button>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>Giorgi Balakhadze</p>
+      <p><span class="footer__copy-left">&copy;</span> Copyleft 2022</p>
+    </footer>
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>

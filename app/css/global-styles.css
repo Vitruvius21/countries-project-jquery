@@ -1,0 +1,202 @@
+@import "buttons.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/** IF prefers-color-scheme IS NOT DARK body DEFAULT IS LIGHT-MODE */
+body {
+  /** BACKGROUND VARIALBES */
+  --bg-color: #f5f5f5;
+  --bg-color-lighter: #ffffff;
+
+  /** BUTTON VARIALBES */
+  --btn-txt-color: #72726e;
+  --btn-txt-color-active: #007bff;
+  --btn-txt-color-secondary: #f2f2f2;
+  --btn-txt-color-secondary-active: #f2f2f2;
+  --btn-border-color: #e5e5e5;
+  --btn-bg-color-main: #f8f9fa;
+  --btn-bg-color-main-hover: #f8f9fa;
+  --btn-bg-color-main-active: #e8f1fb;
+  --btn-bg-color-secondary: hsl(210, 79%, 46%);
+  --btn-bg-color-secondary-hover: hsl(210, 79%, 48%);
+  --btn-bg-color-secondary-active: hsl(208, 79%, 51%);
+
+  /** TEXT VARIALBES */
+  --text-color-primary: #3e8cda;
+  --text-color-secondary: #505050;
+  --main-font: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  /** OTHER VARIALBES */
+  --border-color: #e5e5e5;
+  --box-shadow: 0px 0px 1px -10px rgb(0 0 0 / 10%),
+    0px 2px 2px 0px rgb(0 0 0 / 8%), 0px 1px 5px 0px rgb(0 0 0 / 6%);
+  --box-shadow-hover: 0px 2px 4px -1px rgb(0 0 0 / 16%),
+    0px 4px 5px 0px rgb(0 0 0 / 12%), 0px 1px 10px 0px rgb(0 0 0 / 10%);
+  --box-shadow-active: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+    0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  --transition-time: 0.3s;
+  --filter-color: invert(52%) sepia(12%) saturate(103%) hue-rotate(22deg)
+    brightness(89%) contrast(81%);
+  --focus-color: hsla(211, 100%, 50%, 0.2);
+}
+
+body.dark-theme {
+  /** BACKGROUND VARIALBES */
+  --bg-color: #2b3743;
+  --bg-color-lighter: #202d36;
+
+  /** BUTTON VARIALBES */
+  --btn-txt-color: #d6d6d6;
+  --btn-txt-color-active: #f0f0f0;
+  --btn-txt-color-secondary: #343434;
+  --btn-txt-color-secondary-active: #343434;
+  --btn-border-color: #333333;
+  --btn-bg-color-main: hsl(210deg 22% 30%);
+  --btn-bg-color-main-hover: hsl(210deg 22% 35%);
+  --btn-bg-color-main-active: hsl(210deg 22% 40%);
+  --btn-bg-color-secondary: hsl(207, 89%, 68%);
+  --btn-bg-color-secondary-hover: hsl(207deg 89% 72%);
+  --btn-bg-color-secondary-active: hsl(207, 90%, 77%);
+
+  /** TEXT VARIALBES */
+  --text-color-secondary: #d6d6d6;
+
+  /** OTHER VARIALBES */
+  --border-color: #333333;
+  --filter-color: invert(97%) sepia(1%) saturate(110%) hue-rotate(314deg)
+    brightness(91%) contrast(89%);
+  --focus-color: hsla(211, 100%, 76%, 0.5);
+}
+
+body.dark-theme img:not(.loader-img) {
+  filter: brightness(0.8) contrast(1.2);
+}
+
+/** IF prefers-color-scheme IS DARK body DEFAULT IS DARK-MODE */
+@media (prefers-color-scheme: dark) {
+  body {
+    /** BACKGROUND VARIALBES */
+    --bg-color: #2b3743;
+    --bg-color-lighter: #202d36;
+
+    /** BUTTON VARIALBES */
+    --btn-txt-color: #d6d6d6;
+    --btn-txt-color-active: #f0f0f0;
+    --btn-txt-color-secondary: #343434;
+    --btn-txt-color-secondary-active: #343434;
+    --btn-border-color: #333333;
+    --btn-bg-color-main: hsl(210deg 22% 30%);
+    --btn-bg-color-main-hover: hsl(210deg 22% 35%);
+    --btn-bg-color-main-active: hsl(210deg 22% 40%);
+    --btn-bg-color-secondary: #64b5f6;
+    --btn-bg-color-secondary-hover: hsl(207deg 89% 72%);
+    --btn-bg-color-secondary-active: #90caf9;
+
+    /** TEXT VARIALBES  */
+    --text-color-primary: #80b7e3;
+    --text-color-secondary: #d6d6d6;
+    --main-font: "Roboto", "Helvetica", "Arial", sans-serif;
+
+    /** OTHER VARIALBES */
+    --border-color: #333333;
+    --filter-color: invert(97%) sepia(1%) saturate(110%) hue-rotate(314deg)
+      brightness(91%) contrast(89%);
+    --focus-color: hsla(211, 100%, 76%, 0.5);
+  }
+
+  body.light-theme {
+    /** BACKGROUND VARIALBES */
+    --bg-color: #f5f5f5;
+    --bg-color-lighter: #ffffff;
+
+    /** BUTTON VARIALBES */
+    --btn-txt-color: #72726e;
+    --btn-txt-color-active: #007bff;
+    --btn-txt-color-secondary: #f2f2f2;
+    --btn-txt-color-secondary-active: #f2f2f2;
+    --btn-border-color: #e5e5e5;
+    --btn-bg-color-main: #f8f9fa;
+    --btn-bg-color-main-hover: #f8f9fa;
+    --btn-bg-color-main-active: #e8f1fb;
+    --btn-bg-color-secondary: hsl(210, 79%, 46%);
+    --btn-bg-color-secondary-hover: hsl(210, 79%, 48%);
+    --btn-bg-color-secondary-active: hsl(208, 79%, 51%);
+
+    /** TEXT VARIALBES */
+    --text-color-primary: #3e8cda;
+    --text-color-secondary: #505050;
+
+    /** OTHER VARIALBES */
+    --border-color: #e5e5e5;
+    --box-shadow: 0px 0px 1px -20px rgb(0 0 0 / 12%),
+      0px 2px 2px 0px rgb(0 0 0 / 10%), 0px 1px 5px 0px rgb(0 0 0 / 8%);
+    --filter-color: invert(52%) sepia(12%) saturate(103%) hue-rotate(22deg)
+      brightness(89%) contrast(81%);
+    --focus-color: hsla(211, 100%, 50%, 0.2);
+  }
+
+  body:not(.light-theme) img:not(.loader-img),
+  body:not(.light-theme) iframe {
+    filter: brightness(0.8) contrast(1.2);
+  }
+}
+
+body {
+  background: var(--bg-color-lighter);
+  transition: background var(--transition-time) ease-in-out;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  color: var(--text-color-secondary);
+  transition: color var(--transition-time) ease-in-out;
+  font-family: var(--main-font);
+}
+
+h1 {
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+
+input {
+  padding: 0.5rem;
+  font-family: var(--main-font);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color-secondary);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 15%);
+  outline: 1px solid transparent;
+
+  transition: box-shadow var(--transition-time),
+    background var(--transition-time), color var(--transition-time),
+    outline 0.1s, border-color var(--transition-time) ease-in-out;
+}
+
+input::placeholder {
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-color-secondary);
+}
+
+input:hover {
+  outline: 1px solid var(--focus-color);
+}
+
+input:focus {
+  outline: 3px solid var(--focus-color);
+}
+
+datalist option:hover {
+  background: red;
+}

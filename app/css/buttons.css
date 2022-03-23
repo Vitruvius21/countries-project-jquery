@@ -1,0 +1,58 @@
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow);
+  color: var(--btn-txt-color);
+  font-family: var(--main-font);
+  background: var(--btn-bg-color-main);
+  transition: background var(--transition-time),
+    box-shadow var(--transition-time), color var(--transition-time) ease-in-out;
+}
+
+.navigation__btn,
+.action-btn {
+  padding: 6px 16px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.navigation__btn:hover:not(.navigation__active-btn) {
+  background: var(--btn-bg-color-main-hover);
+}
+
+button:hover:not(.btn-toggle),
+.navigation__btn:hover {
+  box-shadow: var(--box-shadow-hover);
+}
+
+button:active:not(.btn-toggle),
+.navigation__member button.navigation__btn:active {
+  box-shadow: var(--box-shadow-active);
+}
+
+button:active:not(.btn-toggle, .action-btn),
+.navigation__active-btn,
+.navigation__member button.navigation__btn:active {
+  color: var(--btn-txt-color-active);
+  background: var(--btn-bg-color-main-active);
+}
+
+.action-btn {
+  color: var(--btn-txt-color-secondary);
+  background: var(--btn-bg-color-secondary);
+  height: 38px;
+}
+
+.action-btn:hover {
+  background: var(--btn-bg-color-secondary-hover);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.action-btn:active {
+  /* color: var(--btn-txt-color-secondary-active); */
+  box-shadow: var(--box-shadow-active);
+  background: var(--btn-bg-color-secondary-active);
+}
