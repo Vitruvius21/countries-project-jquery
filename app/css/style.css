@@ -143,3 +143,7 @@
   display: inline-block;
   transform: scaleX(-1);
 }
+
+.fadeTo {
+  opacity: 0;
+}

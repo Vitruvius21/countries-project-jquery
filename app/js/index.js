@@ -4,7 +4,9 @@ import { getRndInteger, createDescription } from "./utils/utils.js";
 
 theme.defineTheme();
 
-window.onload = async function () {
+$(document).ready(async function () {
+  $(".fadeTo").fadeTo(500, 1);
+
   const allCountries = await dataService.getAllCountries();
   let rndCountry;
 
@@ -35,8 +37,7 @@ window.onload = async function () {
     card.append(cardTitle, imgContainer, cardText);
   }
 
-  const randomiseBtn = document.getElementById("rand");
-  randomiseBtn.addEventListener("click", updateCardData);
+  $("#rand").click(updateCardData);
 
   updateCardData();
 
@@ -50,4 +51,4 @@ window.onload = async function () {
   }
 
   card.addEventListener("click", navigate);
-};
+});
