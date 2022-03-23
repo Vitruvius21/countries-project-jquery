@@ -51,7 +51,6 @@ body {
 }
 
 .country {
-  display: inline-block;
   width: 250px;
   height: 300px;
   border-radius: 4px;

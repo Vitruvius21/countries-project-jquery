@@ -27,9 +27,10 @@
     <link rel="stylesheet" href="../css/countries.css" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
-    <header class="header">
+    <header class="header fadeTo">
       <h1 class="header__h1">World Countries</h1>
       <div class="theme__btn-container">
         <button class="btn-toggle"></button>
@@ -56,9 +57,9 @@
         </ul>
       </nav>
     </header>
-    <main class="main">
+    <main class="main fadeTo">
       <div class="main__search">
-        <div>
+        <div class="fadeTo">
           <label for="country-search"></label>
           <input
             id="country-search"
@@ -66,13 +67,13 @@
             placeholder="Search for a country..."
           />
         </div>
-        <div>
+        <div class="fadeTo">
           <input
             id="continent-search"
             type="search"
             list="continents"
             name="continent filter"
-            placeholder="Filter by continent..."
+            placeholder="Filter by a continent..."
           />
           <datalist id="continents">
             <option value="Africa"></option>
@@ -88,7 +89,7 @@
         <div class="main__content-data">
           <div class="countries">
             <img
-              class="loader-img"
+              class="loader-img fadeTo"
               src="../assets/loader.svg"
               alt="loader-icon"
             />
@@ -97,7 +98,7 @@
       </div>
       <div id="paginator"></div>
     </main>
-    <footer class="footer">
+    <footer class="footer fadeTo">
       <p>Giorgi Balakhadze</p>
       <p><span class="footer__copy-left">&copy;</span> Copyleft 2022</p>
     </footer>

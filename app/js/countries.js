@@ -8,6 +8,8 @@ const addr = new URL(window.location.href);
 let pagingNumber = 10;
 
 window.onload = async function () {
+  $(".fadeTo").fadeTo(500, 1);
+
   let countriesData = addr.href.includes("pages/countries")
     ? await dataService.getAllCountries()
     : await dataService.getAllNonUnTerritories();
@@ -36,7 +38,7 @@ window.onload = async function () {
     let countryEl;
 
     [
-      ["div", "country"],
+      ["div", ["country", "fadeTo"]],
       ["img", "country-flag"],
       ["h4", "country-name"],
       ["p", "country-capital"],
@@ -44,7 +46,7 @@ window.onload = async function () {
       ["p", "country-population"],
     ].forEach((val) => {
       let countryInnerEl = document.createElement(val[0]);
-      countryInnerEl.classList.add(val[1]);
+      countryInnerEl.classList.add(...val[1]);
       countryElsArray.push(countryInnerEl);
     });
 
@@ -90,6 +92,8 @@ window.onload = async function () {
       );
       countriesContainer.append(countryEl);
     });
+
+    $(".fadeTo").fadeTo(450, 1);
   }
 
   function updateHrefParams(i) {

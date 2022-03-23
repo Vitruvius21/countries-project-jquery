@@ -9,6 +9,8 @@ const addr = new URL(window.location.href);
 const countryName = addr.searchParams.get("country");
 
 window.onload = async function () {
+  $(".fadeTo").fadeTo(500, 1);
+
   const countries = !localStorage.getItem("countries")
     ? await getAllCountriesAndTerritories()
     : JSON.parse(localStorage.getItem("countries"));
