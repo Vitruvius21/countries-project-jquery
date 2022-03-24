@@ -47,9 +47,11 @@ $(document).ready(async function () {
     } else if ($(el).hasClass("main__data-name-native")) {
       const nativeNames = [];
 
-      Object.keys(countryData?.name?.nativeName).forEach((key) => {
-        nativeNames.push(countryData?.name?.nativeName[key]?.common);
-      });
+      if (countryData?.name?.nativeName) {
+        Object.keys(countryData?.name?.nativeName).forEach((key) => {
+          nativeNames.push(countryData?.name?.nativeName[key]?.common);
+        });
+      }
 
       $(el)
         .attr("title", nativeNames.join(", ") || "N/A")
@@ -89,13 +91,14 @@ $(document).ready(async function () {
         )}:</span> ${countryData?.tld.join(" ") || "N/A"}`
       );
     } else if ($(el).hasClass("main__data-language")) {
-      const languages = Object.values(countryData?.languages);
+      const languages =
+        countryData?.languages && Object.values(countryData?.languages);
 
       $(el)
-        .attr("title", languages.join(", ") || "N/A")
+        .attr("title", languages?.join(", ") || "N/A")
         .html(
-          `<span>${inPluralOrSingular("Language", languages.length)}:</span> ${
-            languages.join(", ") || "N/A"
+          `<span>${inPluralOrSingular("Language", languages?.length)}:</span> ${
+            languages?.join(", ") || "N/A"
           }`
         );
     }
