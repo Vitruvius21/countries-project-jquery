@@ -10,31 +10,34 @@ $(document).ready(async function () {
   const allCountries = await dataService.getAllCountries();
   let rndCountry;
 
-  const loaderImg = document.querySelector(".loader-img");
-  const card = document.querySelector(".main__section-card");
-  const cardTitle = document.createElement("h2");
-  const imgContainer = document.createElement("div");
-  const cardImg = document.createElement("img");
-  const cardText = document.createElement("p");
+  const card = $(".main__section-card");
 
-  loaderImg.setAttribute("style", "display:none");
-  cardTitle.className = "main__section-card-heading";
-  imgContainer.className = "shadow";
-  cardImg.className = "main__section-card-img";
-  cardText.className = "main__section-card-text";
+  const cardTitle = $("<h2></h2>").addClass(
+    "main__section-card-heading fadeTo"
+  );
+  const imgContainer = $("<div></div>").addClass("shadow");
+  const cardImg = $("<img>").addClass("main__section-card-img fadeTo");
+  const cardText = $("<p></p>").addClass("main__section-card-text fadeTo");
+
+  $(".loader-img").attr("style", "display:none");
 
   function updateCardData() {
+    $(".main__section-card .fadeTo").attr("style", "opacity: 0");
+
     const rndIndex = getRndInteger({ max: allCountries.length });
     rndCountry = allCountries[rndIndex];
 
-    cardTitle.innerHTML = rndCountry?.name?.common;
-    cardImg.src = rndCountry?.flags?.svg;
-    cardImg.alt = `${rndCountry?.name?.common} flag`;
-
-    cardText.innerHTML = createDescription(rndCountry);
+    cardTitle.text(rndCountry?.name?.common);
+    cardImg.attr({
+      src: rndCountry?.flags?.svg,
+      alt: `Flag of ${rndCountry?.name?.common}`,
+    });
+    cardText.text(createDescription(rndCountry));
 
     imgContainer.append(cardImg);
     card.append(cardTitle, imgContainer, cardText);
+
+    $(".main__section-card .fadeTo").fadeTo(300, 1);
   }
 
   $("#rand").click(updateCardData);
@@ -50,5 +53,5 @@ $(document).ready(async function () {
     window.location.assign(addr);
   }
 
-  card.addEventListener("click", navigate);
+  card.click(navigate);
 });

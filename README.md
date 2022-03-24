@@ -18,7 +18,7 @@ Users should be able to:
 - See all countries from the API on respective pages
 - Randomly switch countries on the homepage
 - Search for a country using an `input` field
-- Filter countries by continent
+- Filter countries by a continent
 - Click on a country to see more detailed information on a separate page
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode
@@ -41,7 +41,7 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - Modular JS
-- No JS libraries
+- jQuery 3.6.0
 - Custom routing
 - Custom color scheme
 - Custom color scheme switcher
