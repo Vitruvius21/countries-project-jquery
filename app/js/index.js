@@ -11,15 +11,15 @@ $(document).ready(async function () {
   let rndCountry;
 
   const card = $(".main__section-card");
-
   const cardTitle = $("<h2></h2>").addClass(
     "main__section-card-heading fadeTo"
   );
-  const imgContainer = $("<div></div>").addClass("shadow");
   const cardImg = $("<img>").addClass("main__section-card-img fadeTo");
   const cardText = $("<p></p>").addClass("main__section-card-text fadeTo");
+  const imgContainer = $("<div></div>").addClass("shadow").append(cardImg);
 
   $(".loader-img").attr("style", "display:none");
+  card.append(cardTitle, imgContainer, cardText);
 
   function updateCardData() {
     $(".main__section-card .fadeTo").attr("style", "opacity: 0");
@@ -34,14 +34,10 @@ $(document).ready(async function () {
     });
     cardText.text(createDescription(rndCountry));
 
-    imgContainer.append(cardImg);
-    card.append(cardTitle, imgContainer, cardText);
-
     $(".main__section-card .fadeTo").fadeTo(300, 1);
   }
 
   $("#rand").click(updateCardData);
-
   updateCardData();
 
   //* Navigation
