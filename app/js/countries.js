@@ -7,7 +7,7 @@ theme.defineTheme();
 const addr = new URL(window.location.href);
 let pagingNumber = 10;
 
-window.onload = async function () {
+$(document).ready(async function () {
   $(".fadeTo").fadeTo(500, 1);
 
   let countriesData = addr.href.includes("pages/countries")
@@ -22,78 +22,74 @@ window.onload = async function () {
       ? paramsPageNumber
       : 1;
 
-  const loaderImg = document.querySelector(".loader-img");
-  const paginator = document.getElementById("paginator");
+  const paginator = $("#paginator");
   let btnsCollection;
   let previousPagingTarget = null;
 
-  loaderImg.setAttribute("style", "display:none");
+  $(".loader-img").attr("style", "display:none");
 
   function calcMaxPageNumber() {
     return Math.ceil(allCountries.length / pagingNumber);
   }
 
   function createCountryElement(countryData) {
-    let countryElsArray = [];
-    let countryEl;
+    let countryElements = [];
+    let countryElement;
 
+    //* Create country elements
     [
-      ["div", ["country", "fadeTo"]],
-      ["img", "country-flag"],
-      ["h4", "country-name"],
-      ["p", "country-capital"],
-      ["p", "country-region"],
-      ["p", "country-population"],
+      ["<div></div>", "country fadeTo"],
+      ["<img>", "country-flag"],
+      ["<h4></h4>", "country-name"],
+      ["<p></p>", "country-capital"],
+      ["<p></p>", "country-region"],
+      ["<p></p>", "country-population"],
     ].forEach((val) => {
-      let countryInnerEl = document.createElement(val[0]);
-      countryInnerEl.classList.add(...val[1]);
-      countryElsArray.push(countryInnerEl);
+      countryElements.push($(val[0]).addClass(val[1]));
     });
 
-    countryElsArray[0].setAttribute("title", countryData?.name?.common);
-    countryElsArray[1].setAttribute("src", countryData?.flags?.svg);
-    countryElsArray[1].setAttribute(
-      "alt",
-      "Flag of " + countryData?.name?.common
+    //* Populate country elements
+    countryElements[0].attr("title", countryData?.name?.common);
+    countryElements[1].attr({
+      src: countryData?.flags?.svg,
+      alt: `Flag of ${countryData?.name?.common}`,
+    });
+    countryElements[2].html(countryData?.name?.common);
+    countryElements[3].html(
+      `<span>Capital:</span> ${countryData?.capital?.join(", ") || "N/A"}`
     );
-    countryElsArray[2].innerHTML = countryData?.name?.common;
-    countryElsArray[3].innerHTML = `<span>Capital:</span> ${
-      countryData?.capital?.join(", ") || "N/A"
-    }`;
-    countryElsArray[4].innerHTML = `<span>Region:</span> ${
-      countryData?.region || "N/A"
-    }`;
-    countryElsArray[5].innerHTML = `<span>Population:</span> ${
-      transformNumber(+countryData?.population) || "N/A"
-    }`;
+    countryElements[4].html(
+      `<span>Region:</span> ${countryData?.region || "N/A"}`
+    );
+    countryElements[5].html(
+      `<span>Population:</span> ${
+        transformNumber(+countryData?.population) || "N/A"
+      }`
+    );
 
-    for (let index = 1; index < countryElsArray.length; index++) {
-      countryEl = countryElsArray[0];
-      countryEl.appendChild(countryElsArray[index]);
+    //* Populate country element
+    for (let index = 1; index < countryElements.length; index++) {
+      countryElement = countryElements[0].append(countryElements[index]);
     }
 
-    return countryEl;
+    return countryElement;
   }
 
   function updateCountriesData(i) {
+    $(".countries").empty();
+
     const countries = allCountries.slice(
       (i - 1) * pagingNumber,
       i * pagingNumber
     );
 
-    const countriesContainer = document.querySelector(".countries");
-    countriesContainer.innerHTML = "";
-
-    countries.forEach((countryData, index) => {
+    countries.forEach((countryData) => {
       const countryEl = createCountryElement(countryData);
-      countryEl.addEventListener(
-        "click",
-        navigate.bind(null, [countryEl.title])
-      );
-      countriesContainer.append(countryEl);
+      countryEl.click(navigate.bind($, countryEl[0].title));
+      $(".countries").append(countryEl);
     });
 
-    $(".fadeTo").fadeTo(450, 1);
+    $(".fadeTo").fadeTo(300, 1);
   }
 
   function updateHrefParams(i) {
@@ -102,17 +98,15 @@ window.onload = async function () {
   }
 
   function updatePaginator() {
-    // paginator.innerHTML = "";
     for (let index = 1; index <= maxPageNumber; index++) {
-      const btn = document.createElement("button");
-      btn.innerHTML = `${index}`;
+      const btn = $("<button></button>").html(index);
       paginator.append(btn);
 
-      btn.addEventListener("click", (event) => {
+      btn.click((event) => {
         for (const button of btnsCollection) {
-          button.classList.remove("navigation__active-btn");
+          $(button).removeClass("navigation__active-btn");
         }
-        event.target.classList.add("navigation__active-btn");
+        $(event.target).addClass("navigation__active-btn");
 
         //* check for duplicate click
         if (event.target !== previousPagingTarget) {
@@ -123,10 +117,8 @@ window.onload = async function () {
       });
     }
 
-    btnsCollection = paginator.getElementsByTagName("button");
-    btnsCollection[paramsDefaultPage - 1]?.classList.add(
-      "navigation__active-btn"
-    );
+    btnsCollection = $("#paginator button");
+    $(btnsCollection[paramsDefaultPage - 1]).addClass("navigation__active-btn");
   }
 
   //* Navigation
@@ -138,23 +130,19 @@ window.onload = async function () {
     window.location.assign(navAddr);
   }
 
-  window.addEventListener(
-    "popstate",
-    (event) => {
-      const found = +event?.state?.path.match(/page=\d+/g)[0].split("=")[1];
+  $(window).on("popstate", (event) => {
+    const found = +event?.state?.path.match(/page=\d+/g)[0].split("=")[1];
 
-      if (found) {
-        for (const button of btnsCollection) {
-          button.classList.remove("navigation__active-btn");
-        }
-
-        btnsCollection[found - 1]?.classList.add("navigation__active-btn");
+    if (found) {
+      for (const button of btnsCollection) {
+        $(button).removeClass("navigation__active-btn");
       }
 
-      updateCountriesData(found || 1);
-    },
-    false
-  );
+      $(btnsCollection[found - 1]).addClass("navigation__active-btn");
+    }
+
+    updateCountriesData(found || 1);
+  });
 
   updatePaginator();
   updateCountriesData(paramsDefaultPage);
@@ -167,8 +155,10 @@ window.onload = async function () {
 
     allCountries = countriesData.filter((country) => {
       if (countries) {
+        continentSearch.value = "";
         return country.name.common.toLowerCase().includes(searchValue);
       } else if (continents) {
+        countrySearch.value = "";
         let result;
         country.continents.forEach((val) => {
           result = val.toLowerCase().includes(searchValue);
@@ -178,29 +168,28 @@ window.onload = async function () {
       }
     });
 
-    paginator.innerHTML = "";
+    paginator.empty();
     maxPageNumber = calcMaxPageNumber();
     updatePaginator();
     updateCountriesData(paramsDefaultPage);
     updateHrefParams(1);
   }
 
-  const countrySearch = document.getElementById("country-search");
-  const continentSearch = document.getElementById("continent-search");
+  const countrySearch = $("#country-search");
+  const continentSearch = $("#continent-search");
 
-  if (countrySearch.value.length > 0) {
-    onFilter({ value: countrySearch.value, countries: true });
-  } else if (continentSearch.value.length > 0) {
-    onFilter({ value: continentSearch.value, continents: true });
+  //* Auto-Filter by, when back from profile
+  if (countrySearch.val().length > 0) {
+    onFilter({ value: countrySearch.val(), countries: true });
+  } else if (continentSearch.val().length > 0) {
+    onFilter({ value: continentSearch.val(), continents: true });
   }
 
-  countrySearch.addEventListener("input", (event) => {
-    continentSearch.value = "";
+  //* Filter by, when typing
+  $("#country-search").on("input", (event) => {
     onFilter({ event, countries: true });
   });
-
-  continentSearch.addEventListener("input", (event) => {
-    countrySearch.value = "";
+  $("#continent-search").on("input", (event) => {
     onFilter({ event, continents: true });
   });
-};
+});
