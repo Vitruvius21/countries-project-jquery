@@ -181,7 +181,7 @@ $(document).ready(async function () {
     });
   }
 
-  loadGoogleMap(country, "gmap_canvas");
+  loadGoogleMap(country, "googleMap");
   loadProfileData(country);
   onPageLoad();
 });

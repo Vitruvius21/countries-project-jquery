@@ -62,19 +62,8 @@
   transition: border var(--transition-time) ease-in-out;
 }
 
-.gmap-container {
-  flex: 0 0 40%;
-  display: inline-block;
-  height: 500px;
-  width: 700px;
-
-  display: flex;
-  justify-content: center;
-}
-
-.gmap-canvas {
-  border-style: solid;
-  border-color: var(--border-color);
+#googleMap {
+  border: 2px solid var(--border-color);
   transition: border var(--transition-time) ease-in-out;
 }
 

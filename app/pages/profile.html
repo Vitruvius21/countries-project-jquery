@@ -75,16 +75,7 @@
           <div class="country-flag">
             <img class="country-flag-img with-data" alt="" />
           </div>
-
-          <div class="gmap-container">
-            <iframe
-              width="700px"
-              height="500px"
-              id="gmap_canvas"
-              class="gmap-canvas"
-              title="google map"
-            ></iframe>
-          </div>
+          <div id="googleMap" style="width: 700px; height: 500px"></div>
         </div>
         <div style="display: none" class="main__data-text">
           <h1 class="main__data-name with-data"></h1>
@@ -112,5 +103,9 @@
       <p><span class="footer__copy-left">&copy;</span> Copyleft 2022</p>
     </footer>
     <script type="module" src="../js/profile.js"></script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0V96weIT-X8wd5q2P8Db402uUb_tWw_0"
+    ></script>
   </body>
 </html>
