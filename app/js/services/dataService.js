@@ -2,53 +2,40 @@ const URL = "https://restcountries.com/v3.1";
 
 function getData({ countryName, nonUnMembers, all } = {}) {
   return new Promise(function (resolve, reject) {
-    const xhttp = new XMLHttpRequest();
-
-    if (countryName) {
-      xhttp.open("GET", `${URL}/name/${countryName}?fullText=true`);
-    } else {
-      xhttp.open("GET", `${URL}/all`);
-    }
-
-    xhttp.onload = function () {
-      if (this.status >= 200 && this.status < 300) {
+    function resolver(data, status) {
+      if (status === "success") {
         if (countryName) {
           resolve(
-            JSON.parse(xhttp.response).filter((country) => {
+            data.filter((country) => {
               return country?.unMember;
             })[0]
           );
         } else if (nonUnMembers) {
           resolve(
-            JSON.parse(xhttp.response).filter((country) => {
+            data.filter((country) => {
               return !country?.unMember;
             })
           );
         } else if (all) {
-          resolve(JSON.parse(xhttp.response));
+          resolve(data);
         } else {
           resolve(
-            JSON.parse(xhttp.response).filter((country) => {
+            data.filter((country) => {
               return country?.unMember;
             })
           );
         }
       } else {
         reject({
-          status: this.status,
-          statusText: xhttp.statusText,
+          status,
         });
       }
-    };
+    }
 
-    xhttp.onerror = function () {
-      reject({
-        status: this.status,
-        statusText: xhttp.statusText,
-      });
-    };
-
-    xhttp.send();
+    $.get(
+      countryName ? `${URL}/name/${countryName}?fullText=true` : `${URL}/all`,
+      resolver
+    );
   });
 }
 
