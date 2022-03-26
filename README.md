@@ -47,6 +47,6 @@ Users should be able to:
 - Custom color scheme switcher
 - History API
 - Storage API
+- Google Maps API
 - URL API
-- JSON API
 - AJAX
