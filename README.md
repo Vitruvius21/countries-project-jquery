@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [https://gb-worldcountries.netlify.app](https://gb-worldcountries.netlify.app)
+- Live Site URL: [www.gb-worldcountries-jquery.netlify.app](https://gb-worldcountries-jquery.netlify.app/)
 
 ## My process
 
